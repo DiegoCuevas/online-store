@@ -1,6 +1,6 @@
 import React from "react";
 import { logout } from "../services/user";
-import { navigate } from "@reach/router";
+import { Link } from "@reach/router";
 
 function Navbar() {
   return (
@@ -12,6 +12,12 @@ function Navbar() {
         }}
       >
         Logout
+      </button>
+      <button>
+        <Link to="/cart">Cart</Link>
+      </button>
+      <button>
+        <Link to="/">Home</Link>
       </button>
       <hr />
     </>
