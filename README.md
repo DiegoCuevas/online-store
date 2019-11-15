@@ -8,6 +8,9 @@
 For run the proyect you need install dependencies
 - ``bundle install``
 - ``yarn install``
+- ``yarn add react-modal``
+- ``yarn add formik``
+- ``yarn add @reach/router``
 - ``gem install foreman``
 - ``rails db:setup``
 
