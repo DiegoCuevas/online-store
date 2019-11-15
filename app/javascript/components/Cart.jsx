@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { createOrder } from "../services/orders";
 
 function Cart({ productCart, currentUser }) {
-
+  const [address, setAddress] = useState("");
   const handleSubmit = async _event => {
     const items_attributes = Object.entries(productCart).map(
       ([productId, product]) => ({
@@ -14,6 +14,8 @@ function Cart({ productCart, currentUser }) {
       order: {
         user_id: currentUser.id,
         store_id: 1,
+        destination: address,
+        status: "Pending",
         items_attributes
       }
     });
@@ -43,6 +45,14 @@ function Cart({ productCart, currentUser }) {
             </p>
           </div>
         ))}
+        <form>
+          <input
+            value={address}
+            type="text"
+            onChange={(event) => setAddress(event.target.value)}
+            placeholder="Address"
+          />
+        </form>
         <span>Total Price:</span>
         <span>
           {Object.values(productCart).reduce(

@@ -1,7 +1,7 @@
 class Api::OrdersController < ApiController
   
   def index
-    render json: Order.all
+    render json: Order.all.as_json(include: :items)
   end
 
   def show
@@ -30,6 +30,6 @@ end
   private 
   
   def order_params
-    params.require(:order).permit(:user_id, :store_id, :total_cost, :items_attributes =>[:product_id, :quantity])
+    params.require(:order).permit(:user_id, :store_id, :total_cost, :destination, :status ,:items_attributes =>[:product_id, :quantity])
   end
 end

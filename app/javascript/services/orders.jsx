@@ -36,15 +36,16 @@ async function updateOrder(id, order_id, values) {
   return data;
 }
 
-async function deleteOrder() {
-  const response = await fetch(`${API_ORDER}/${id}/orders/${order_id}`, {
-    method: "DELETE",
+async function showOrder(id) {
+  const response = await fetch(`${API_ORDER}/${id}/orders`, {
     credentials: "include",
     headers: {
       "Content-Type": "application/json"
     }
   });
   if (!response.ok) throw createError(response);
+  const data = await response.json();
+  return data;
 }
 
-export {createOrder, deleteOrder, updateOrder };
+export {createOrder, showOrder, updateOrder };

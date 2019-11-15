@@ -5,8 +5,7 @@ import { updateProduct } from "../services/Store";
 function UpdateProduct({ handleCloseModal, product, setProducts }) {
   const handleSubmit = async values => {
     const price = Math.round(parseFloat(values.price * 100));
-    const response = await updateProduct({ ...values, price });
-    // setProducts(response);
+    await updateProduct({ ...values, price });
   };
   return (
     <div>

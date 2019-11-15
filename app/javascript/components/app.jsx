@@ -6,11 +6,20 @@ import Login from "./Login";
 import CreateProduct from "./CreateProduct";
 import Cart from "./Cart";
 import Order from "./Order";
-import Item from "./Item";
+import {allProduct} from "../services/Store"
+
 function App() {
   const [productCart, setProductCart] = useState({});
   const [currentUser, setCurrentUser] = useState({});
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    async function fetchProductsData() {
+      const response = await allProduct();
+      setProducts(response);
+    }
+    fetchProductsData();
+  }, []);
   useEffect(() => {
     const userDataElement = document.getElementById("user");
     if (userDataElement) {
@@ -27,6 +36,8 @@ function App() {
           path="/"
           setProductCart={setProductCart}
           productCart={productCart}
+          products={products}
+          setProducts={setProducts}
         />
         <CreateProduct path="/createProduct" />
         <Cart
@@ -34,8 +45,12 @@ function App() {
           productCart={productCart}
           currentUser={currentUser}
         />
-        <Order path="/order" />
-        <Item path="/item" />
+        <Order
+          path="/order"
+          currentUser={currentUser}
+          products={products}
+          setProducts={setProducts}
+        />
       </Router>
     </>
   );

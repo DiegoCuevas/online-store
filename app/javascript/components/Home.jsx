@@ -4,10 +4,8 @@ import { allProduct } from "../services/Store";
 import Modal from "react-modal";
 import UpdateProduct from "./UpdateProduct";
 
-function Home({ productCart, setProductCart }) {
+function Home({ productCart, setProductCart, products, setProducts }) {
   const [showModal, setShowModal] = useState({});
-  const [products, setProducts] = useState([]);
-
   console.log(productCart);
 
   const handleCart = product => {
@@ -30,14 +28,6 @@ function Home({ productCart, setProductCart }) {
 
   const handleCloseModal = product =>
     setShowModal(current => ({ ...current, [product]: false }));
-
-  useEffect(() => {
-    async function fetchProductsData() {
-      const response = await allProduct();
-      setProducts(response);
-    }
-    fetchProductsData();
-  }, []);
 
   return (
     <>

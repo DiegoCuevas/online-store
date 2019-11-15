@@ -22,7 +22,7 @@ async function createProduct(values) {
   return data;
 }
 
-async function allProduct(productId) {
+async function allProduct() {
   const response = await fetch(`${API_PRODUCTS}/1/products`, {
     credentials: "include",
     headers: {
